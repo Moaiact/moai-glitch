@@ -21,6 +21,7 @@ pkgbuild --root "$W/au" --component-plist "$W/au.plist" --identifier com.moaiact
 OUT="$W/Moai Glitch $VER (macOS)"; mkdir -p "$OUT"
 productbuild --package "$W/vst3.pkg" --package "$W/au.pkg" "$OUT/Moai Glitch $VER (macOS).pkg"
 cp packaging/mac/LEEME-README.txt packaging/LICENCIA.txt packaging/CREDITOS.txt "$OUT/"
+mkdir -p "$OUT/Manuales" && cp packaging/manuals/*.pdf "$OUT/Manuales/"
 
 (cd "$W" && ditto -c -k --keepParent "Moai Glitch $VER (macOS)" "../dist/Moai Glitch $VER (macOS).zip")
 ls -la dist
