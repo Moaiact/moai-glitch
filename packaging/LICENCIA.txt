@@ -1,0 +1,20 @@
+﻿MOAI PLUGINS - LICENCIA DE USO / END USER LICENSE AGREEMENT
+Moai Glitch y Moai Glitch Multirate  -  (c) 2026 Moaiact. Todos los derechos reservados.
+
+ESPAÑOL
+1. Moaiact te concede una licencia personal, no exclusiva e intransferible para instalar y usar
+   estos plugins en tus propios computadores, para proyectos personales o comerciales.
+2. La música y el audio que produzcas con los plugins son 100 % tuyos.
+3. No está permitido revender, redistribuir, copiar para terceros, descompilar o modificar los plugins.
+4. Los plugins se entregan "tal cual", sin garantías. Moaiact no se hace responsable por pérdidas
+   de datos o daños derivados de su uso. Guarda siempre respaldos de tus proyectos.
+5. Al instalar el software aceptas estas condiciones.
+
+ENGLISH
+1. Moaiact grants you a personal, non-exclusive, non-transferable license to install and use these
+   plugins on your own computers, for personal or commercial projects.
+2. The music and audio you create with the plugins are 100 % yours.
+3. You may not resell, redistribute, share with third parties, decompile or modify the plugins.
+4. The plugins are provided "as is", without warranty. Moaiact is not liable for data loss or damage
+   arising from their use. Always keep backups of your projects.
+5. By installing the software you accept these terms.

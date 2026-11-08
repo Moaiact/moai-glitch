@@ -1,0 +1,8 @@
+﻿MOAI PLUGINS 1.1.0 - CRÉDITOS / CREDITS
+
+Diseño, sonido y desarrollo: Moaiact (Chile)
+
+Made with JUCE - juce.com
+VST is a registered trademark of Steinberg Media Technologies GmbH.
+VST3 SDK (c) Steinberg Media Technologies GmbH.
+DejaVu fonts - Bitstream Vera / DejaVu license (Moai Glitch Multirate, título "MULTIRATE").

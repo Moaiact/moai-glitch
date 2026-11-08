@@ -1,0 +1,6 @@
+build/
+pkgwork/
+dist/
+pv-logs/
+pluginval.app/
+pv.zip

@@ -1,0 +1,52 @@
+name: Build macOS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  macos:
+    runs-on: macos-14
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure (Universal: Apple Silicon + Intel)
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+
+      - name: Build VST3 + AU
+        run: cmake --build build --config Release -j 4
+
+      - name: Ad-hoc signature (sin cuenta de Apple)
+        run: |
+          A="build/MoaiGlitch_artefacts/Release"
+          codesign --force --deep --sign - "$A/VST3/Moai Glitch.vst3"
+          codesign --force --deep --sign - "$A/AU/Moai Glitch.component"
+          lipo -info "$A/VST3/Moai Glitch.vst3/Contents/MacOS/Moai Glitch"
+
+      - name: pluginval (VST3 + AU, strictness 10)
+        run: |
+          curl -sSL -o pv.zip https://github.com/Tracktion/pluginval/releases/latest/download/pluginval_macOS.zip
+          unzip -q pv.zip
+          A="build/MoaiGlitch_artefacts/Release"
+          mkdir -p ~/Library/Audio/Plug-Ins/Components
+          cp -R "$A/AU/Moai Glitch.component" ~/Library/Audio/Plug-Ins/Components/
+          killall -9 AudioComponentRegistrar || true
+          ./pluginval.app/Contents/MacOS/pluginval --strictness-level 10 --validate-in-process --output-dir pv-logs "$A/VST3/Moai Glitch.vst3"
+          ./pluginval.app/Contents/MacOS/pluginval --strictness-level 10 --validate-in-process --output-dir pv-logs ~/Library/Audio/Plug-Ins/Components/"Moai Glitch.component"
+          auval -v aufx MglA Moai | tail -5
+
+      - name: Package (.pkg + guía)
+        run: bash packaging/mac/package.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Moai-Glitch-1.1.0-macOS
+          path: dist/*.zip
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pluginval-logs
+          path: pv-logs
