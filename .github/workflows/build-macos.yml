@@ -5,6 +5,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   macos:
     runs-on: macos-latest
@@ -53,3 +56,10 @@ jobs:
         with:
           name: pluginval-logs
           path: pv-logs
+
+      - name: Publicar release v1.1.0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete v1.1.0 -y --cleanup-tag || true
+          gh release create v1.1.0 dist/*.zip --title "Moai Glitch 1.1.0" --notes "VST3 + AU para macOS (Apple Silicon + Intel). Free plugin by Moaiact."
